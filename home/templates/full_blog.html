@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      .container{
+        height: min-content;
+        width: 100%;
+        display: flex;
+        padding-left:10%;
+        display:flex;
+        text-align:center;
+        flex-wrap : wrap;
+      }
+      .card{
+        height: 100vh;
+        width: 20rem;
+        display:flex;
+        justify-content:center;
+        text-align:center;
+        flex-wrap : wrap;
+        background: #fff;
+        box-shadow:  23px 23px 52px #bebebe,
+               -23px -23px 52px #ffffff;
+               margin-right:2.5rem;
+               margin-bottom:1.5rem;
+      }
+      .card-img-top{
+        height: 60%;
+        width:100%;
+      }
+      .card-img-top:hover{
+        background-color:#fff;
+      }
+      .card-body{
+        width:100%;
+        padding-left:1rem;
+        padding-right:1rem;
+        height:40%;
+      }
+      .card-title{
+        width:100%;
+        text-transform: uppercase;
+        font-size:1rem;
+      }
+      .card-text{
+        width:100%;
+        font-size:1.6rem;
+        font-weight:600;
+        
+      }
+
+      form.form {
+        width: 100%;
+        max-width: 600px;
+        margin: 20px auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        background-color: #f9f9f9;
+    }
+    
+    form.form label {
+        display: block;
+        margin-bottom: 8px;
+        font-size:18px;
+    }
+    
+    form.form textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 16px;
+    }
+    form.form input[type="email"],
+    form.form input[type="password"],
+    form.form input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 16px;
+      height: 60px !important; /* Force height */
+    }
+    
+    
+    form.form input[type="file"] {
+        margin-bottom: 15px;
+    }
+    
+    form.form input[type=file]::file-selector-button {
+      margin-right: 20px;
+      border: none;
+      background: #084cdf;
+      padding: 10px 20px;
+      border-radius: 10px;
+      color: #fff;
+      cursor: pointer;
+      transition: background .2s ease-in-out;
+    }
+    
+    form.form input[type=file]::file-selector-button:hover {
+      background: #0d45a5;
+    }
+    
+    form.form a {
+      display: inline-block;
+      margin-top: 10px;
+      text-decoration: none;
+    }
+    
+    form.form a:hover {
+        text-decoration: underline;
+    }
+    
+    form.form .errorlist {
+        color: red;
+        margin-bottom: 10px;
+    }
+    
+    form.form .errorlist li {
+        list-style: none;
+    }
+    
+    
+    :root {
+      --arrow-bg: rgba(255, 255, 255, 0.3);
+      --arrow-icon: url(https://upload.wikimedia.org/wikipedia/commons/9/9d/Caret_down_font_awesome_whitevariation.svg);
+      --option-bg: white;
+      --select-bg: rgba(255, 255, 255, 0.2);
+    }
+    form.form select {
+      appearance: none;
+      border: 0;
+      outline: 0;
+      font: inherit;
+      width: 15rem;
+      padding: 1rem 4rem 1rem 1rem;
+      background: var(--arrow-icon) no-repeat right 0.8em center / 1.4em,
+        linear-gradient(to left, var(--arrow-bg) 3em, var(--select-bg) 3em);
+      color: black;
+      border-radius: 0.25em;
+      box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      &::-ms-expand {
+        display: none;
+      }
+      &:focus {
+        outline: none;
+      }
+      form.form option {
+        color: inherit;
+        background-color: var(--option-bg);
+        
+      }
+    }
+
+    /* Container for the post and comment */
+    .post-comment-container {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      margin-top: 4.5rem;
+    }
+  
+    /* Main comment box */
+    .comment-box {
+      display: flex;
+      align-items: center;
+      width: 70%;
+      height: 11.5rem;
+      padding: 2.625rem;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      background-color: #fff;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+  
+    /* Image placeholder (replace with actual image later) */
+    .image-placeholder {
+      margin-left: 2.625rem;
+      margin-right: 2.625rem;
+      width: 64px;
+      height: 64px;
+      background-color: #f0f0f0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 14px;
+      font-weight: bold;
+      color: #888;
+      border-radius: 50%;
+    }
+  
+    /* Posted by text styling */
+    .posted-by {
+      text-transform: uppercase;
+      color: gray;
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+      line-height: 1.5rem;
+    }
+  
+    /* Username styling */
+    .username {
+      text-transform: capitalize;
+      font-size: 17px;
+      font-weight: 600;
+      line-height: 1.5rem;
+    }
+  
+    /* Comment date styling */
+    .comment-date {
+      font-size: 17px;
+      margin-left: 2.625rem;
+      margin-right: 2.625rem;
+      line-height: 1.5rem;
+      color: #666;
+      text-align: start;
+    }
+
+
+
+      .comments-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        margin-top: 4.5rem;
+        padding: 0 1rem;
+      }
+    
+      /* Single comment wrapper */
+      .comment-box {
+        display: flex;
+        align-items: center;
+        width: 70vw;
+        padding: 2rem;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        margin-bottom: 1.5rem;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        background-color: #fff;
+      }
+    
+      /* Image placeholder or profile picture */
+      .comment-image {
+        width: 64px;
+        height: 64px;
+        background-color: #f0f0f0;
+        border-radius: 50%;
+        margin-right: 2rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: bold;
+        color: #888;
+      }
+    
+      /* Content container for user info and comment text */
+      .comment-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+    
+      /* User name */
+      .comment-user {
+        text-transform: uppercase;
+        color: gray;
+        font-size: 0.9rem;
+        margin-bottom: 0.5rem;
+      }
+    
+      /* Comment text */
+      .comment-text {
+        font-size: 1rem;
+        line-height: 1.5rem;
+        margin-bottom: 0.5rem;
+        width: 100%;
+      }
+    
+      /* Comment timestamp */
+      .comment-date {
+        font-size: 0.8rem;
+        color: #888;
+        text-align: end;
+        margin-top: 0.5rem;
+      }
+    
+      /* Empty state for no comments */
+      .no-comments {
+        font-size: 1.2rem;
+        color: #666;
+        margin-top: 2rem;
+      }    
+    </style>
+  </head>
+<body>
+  
+</body>
+</html>
+{% extends "layout.html" %}
+
+{% block title %}
+Campus Thoughts | Detailed BLog
+{% endblock %}
+
+{% block swiper %}
+
+{% endblock %}
+
+{% block content %}
+<h1 style="width:100%; text-align:center; margin-top:1rem;">
+    {{ post.text }}
+</h1>
+<p style="width:100%; text-align:center; margin-top:1rem; margin-bottom:1rem; font-size:18px; text-transform:uppercase; letter-spacing: 0.2em;">
+  <span style="color:#797979;">{{ post.created_at }}  by</span> {{ post.user }}
+</p>
+<div style="width:100%; display:flex; justify-content:center; flex-wrap:wrap;">
+    <img style="height:70vh;" src="{{ post.photo.url }}" alt="{{ post.name }}">
+    <h3 style="width:100%; text-align:center; margin-top:1rem; margin-bottom:1rem; font-size:22px;">
+        {% if post.description %}
+            {{ post.description|slice:":50" }}{% if post.description|length > 50 %}...{% endif %}
+        {% else %}
+            No description available.
+        {% endif %}
+    </h3>    
+    <div style="width:100%; display:flex; justify-content:center; line-height:2.5em;">
+    <p style="width:70%;  font-size:17px;">
+      {{ post.description|safe }}
+    </p>
+  </div>
+</div>
+<div style= "width:100%; margin-top:2rem; margin-bottom:1rem; line-height:1.5rem; padding-left:15%;">
+  <p style="width:70%; font-size:17px; font-weight:600;">POSTED IN:</p>
+  <p style="width:70%; font-size:17px;">{{ post.category }}</p>
+</div>
+
+
+
+
+<div class="post-comment-container">
+  <div class="comment-box">
+    <div class="image-placeholder">IMG</div>
+    <div>
+      <p class="posted-by">posted by</p>
+      <p class="username">{{ post.user }}</p>
+    </div>
+    <div class="comment-date">
+      <p>{{ comment.created_at }}</p>
+    </div>
+  </div>
+</div>
+
+</div>
+
+
+<h2 style="width:100%; text-align:center; font-size:3vw; font-family:Serif;letter-spacing:0.5rem; margin-top:2rem;">
+  {{ comment_count }} Comments
+</h2>
+
+<div class="comments-container">
+  {% for comment in comments %}
+    <div class="comment-box">
+      <div class="comment-image">
+        <!-- You can replace 'image' with a user avatar if available -->
+        IMG
+      </div>
+      <div class="comment-content">
+        <div class="comment-user">{{ comment.user }}</div>
+        <div class="comment-text">{{ comment.comment_text }}</div>
+        <div class="comment-date">{{ comment.created_at }}</div>
+      </div>
+    </div>
+  {% empty %}
+    <p class="no-comments">No comments yet. Be the first to comment!</p>
+  {% endfor %}
+</div>
+
+
+<div>
+  <h1 style="text-align:center; font-family:Serif; font-size:3vw;">Add Comment</h1>
+  <p style="text-align:center; font-size:18px; color:#333333;">Your email address will not be published</p>
+<div>
+    <form method="post" enctype="multipart/form-data" class="form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="button-33" type="submit">Submit Comment</button>
+    </form>
+</div>
+
+
+</div>
+
+{% endblock %}

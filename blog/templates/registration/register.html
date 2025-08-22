@@ -1,0 +1,139 @@
+{% extends "layout.html" %}
+
+{% block swiper %}
+
+{% endblock %}
+
+{% block content %}
+<style>
+form.form {
+    width: 100%;
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+form.form label {
+    display: block;
+    margin-bottom: 8px;
+    margin-top: 8px;
+    font-size:18px;
+}
+
+form.form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+}
+form.form input[type="email"],
+form.form input[type="password"],
+form.form input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  margin-top: 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+  height: 60px !important; /* Force height */
+}
+
+
+form.form input[type="file"] {
+    margin-bottom: 15px;
+}
+
+form.form input[type=file]::file-selector-button {
+  margin-right: 20px;
+  border: none;
+  background: #084cdf;
+  padding: 10px 20px;
+  border-radius: 10px;
+  color: #fff;
+  cursor: pointer;
+  transition: background .2s ease-in-out;
+}
+
+form.form input[type=file]::file-selector-button:hover {
+  background: #0d45a5;
+}
+
+form.form a {
+  display: inline-block;
+  margin-top: 10px;
+  text-decoration: none;
+}
+
+form.form a:hover {
+    text-decoration: underline;
+}
+
+form.form .errorlist {
+    color: red;
+    margin-bottom: 10px;
+}
+
+form.form .errorlist li {
+    list-style: none;
+}
+
+
+:root {
+  --arrow-bg: rgba(255, 255, 255, 0.3);
+  --arrow-icon: url(https://upload.wikimedia.org/wikipedia/commons/9/9d/Caret_down_font_awesome_whitevariation.svg);
+  --option-bg: white;
+  --select-bg: rgba(255, 255, 255, 0.2);
+}
+form.form select {
+  appearance: none;
+  border: 0;
+  outline: 0;
+  font: inherit;
+  width: 15rem;
+  padding: 1rem 4rem 1rem 1rem;
+  background: var(--arrow-icon) no-repeat right 0.8em center / 1.4em,
+    linear-gradient(to left, var(--arrow-bg) 3em, var(--select-bg) 3em);
+  color: black;
+  border-radius: 0.25em;
+  box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  &::-ms-expand {
+    display: none;
+  }
+  &:focus {
+    outline: none;
+  }
+  form.form option {
+    color: inherit;
+    background-color: var(--option-bg);
+    
+  }
+}
+a:hover{
+  text-decoration:underline;
+  text-decoration-color:black;
+}
+</style>
+<div style="display:flex; justify-content:center; flex-wrap:wrap;">
+  <h2 style="width:100%; text-align:center; margin-top:1rem;"> 
+  Register form
+</h2>
+<form method="post" enctype="multipart/form-data" class="form">
+  {% csrf_token %}
+  {{form.as_p}}
+  <button class="button-33" type="submit">Register</button>
+
+</form>
+</div>
+<p style="width:100%; text-align:center; font-size:18px;">
+  Already have an account!
+   <a href="{% url 'login' %}" style="color:blue;">
+    Login here
+  </a>
+{% endblock %}

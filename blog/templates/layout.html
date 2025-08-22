@@ -1,0 +1,200 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {% block title %}
+        Campus Thoughts
+        {% endblock %}
+    </title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="shortcut icon" href="{% static 'images/logo1.png' %}" type="image/x-icon">
+    <style>
+        
+.button-6 {
+    align-items: center;
+    background-color: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: .25rem;
+    box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+    box-sizing: border-box;
+    color: rgba(0, 0, 0, 0.85);
+    cursor: pointer;
+    display: inline-flex;
+    font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    justify-content: center;
+    line-height: 1.25;
+    margin: 0;
+    min-height: 3rem;
+    padding: calc(.875rem - 1px) calc(1.5rem - 1px);
+    position: relative;
+    text-decoration: none;
+    transition: all 250ms;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: baseline;
+    width: auto;
+  }
+  
+  .button-6:hover,
+  .button-6:focus {
+    border-color: rgba(0, 0, 0, 0.15);
+    box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+    color: rgba(0, 0, 0, 0.65);
+  }
+  
+  .button-6:hover {
+    transform: translateY(-1px);
+  }
+  
+  .button-6:active {
+    background-color: #F0F0F1;
+    border-color: rgba(0, 0, 0, 0.15);
+    box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
+    color: rgba(0, 0, 0, 0.65);
+    transform: translateY(0);
+  }
+  .button-33 {
+    background-color: #b3e0ff; /* Bluish background */
+    border-radius: 100px;
+    box-shadow: rgba(52, 152, 219, .2) 0 -25px 18px -14px inset,rgba(52, 152, 219, .15) 0 1px 2px,rgba(52, 152, 219, .15) 0 2px 4px,rgba(52, 152, 219, .15) 0 4px 8px,rgba(52, 152, 219, .15) 0 8px 16px,rgba(52, 152, 219, .15) 0 16px 32px;
+    color: blue;
+    cursor: pointer;
+    display: inline-block;
+    font-family: CerebriSans-Regular,-apple-system,system-ui,Roboto,sans-serif;
+    padding: 7px 20px;
+    text-align: center;
+    text-decoration: none;
+    transition: all 250ms;
+    border: 0;
+    font-size: 16px;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    }
+    
+    .button-33:hover {
+    box-shadow: rgba(52, 152, 219, .35) 0 -25px 18px -14px inset,rgba(52, 152, 219, .25) 0 1px 2px,rgba(52, 152, 219, .25) 0 2px 4px,rgba(52, 152, 219, .25) 0 4px 8px,rgba(52, 152, 219, .25) 0 8px 16px,rgba(52, 152, 219, .25) 0 16px 32px;
+    transform: scale(1.05) rotate(-1deg);
+    }
+    
+    /* Reddish button */
+    .button-34 {
+    background-color: #ffcccc; /* Reddish background */
+    border-radius: 100px;
+    box-shadow: rgba(231, 76, 60, .2) 0 -25px 18px -14px inset,rgba(231, 76, 60, .15) 0 1px 2px,rgba(231, 76, 60, .15) 0 2px 4px,rgba(231, 76, 60, .15) 0 4px 8px,rgba(231, 76, 60, .15) 0 8px 16px,rgba(231, 76, 60, .15) 0 16px 32px;
+    color: red;
+    cursor: pointer;
+    display: inline-block;
+    font-family: CerebriSans-Regular,-apple-system,system-ui,Roboto,sans-serif;
+    padding: 7px 20px;
+    text-align: center;
+    text-decoration: none;
+    transition: all 250ms;
+    border: 0;
+    font-size: 16px;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    }
+    
+    .button-34:hover {
+    box-shadow: rgba(231, 76, 60, .35) 0 -25px 18px -14px inset,rgba(231, 76, 60, .25) 0 1px 2px,rgba(231, 76, 60, .25) 0 2px 4px,rgba(231, 76, 60, .25) 0 4px 8px,rgba(231, 76, 60, .25) 0 8px 16px,rgba(231, 76, 60, .25) 0 16px 32px;
+     transform: scale(1.05) rotate(-1deg);
+    }
+    
+    </style>
+</head>
+<body>
+    {% block nav %}
+    <nav class ="logo" style="position: fixed; z-index: 100;">
+        <div>
+        <a href="{% url 'home' %}">
+            <h1>CampusThoughts.</h1>
+        </a>
+    </div>
+    <div class="link" style='margin-left:20%; display:flex; align-items:center;'>
+        <a href="{% url 'home' %}">
+            <button class="button-6" style='margin-right:0.5rem;'>Home</button>
+        </a>
+        {% if user.is_authenticated %}
+        <a href="{% url 'blog_create' %}">
+            <button class="button-6" >Create</button>
+        </a>
+            <form method="post" action="{% url 'logout' %}" style="width:50%; margin-left:0.5rem;">
+                {% csrf_token %}
+                <button class="button-6" type="submit">Logout</button>
+            </form>
+            <a href="#" style="text-transform: capitalize; margin-left:1.5rem;
+"><span>Welcome,</span>{{ request.user.username }}</a>
+        {% else %}
+            <a href="{% url 'login' %}">
+                <button class="button-6">Login</button>
+            </a>
+            <a href="{% url 'register' %}">
+                <button class="button-6">Register</button>
+            </a>
+        {% endif %}
+    </div>
+    </nav>
+    {% endblock %}
+
+<div style="height:5em; width: 100%;">
+
+</div>
+    {% block swiper %}
+    <swiper-container class="mySwiper" pagination="true" effect="coverflow" grab-cursor="true" centered-slides="true"
+    slides-per-view="auto" coverflow-effect-rotate="50" coverflow-effect-stretch="0" coverflow-effect-depth="100"
+    coverflow-effect-modifier="5" coverflow-effect-slide-shadows="true">
+    <swiper-slide>
+      <img src="https://i.pinimg.com/564x/71/b8/4f/71b84f6710433f6b81d533766fa2d78b.jpg" style="border-radius:10px;"/>
+    </swiper-slide>
+    <swiper-slide>
+        <img src="https://i.pinimg.com/564x/bf/5e/47/bf5e47edb927a92912137b179150d440.jpg" style="border-radius:10px;/>
+    </swiper-slide>
+    <swiper-slide>
+        <img src="https://i.pinimg.com/enabled/564x/ee/9c/a0/ee9ca0c9ac36f70badacbd6a2e48b4e3.jpg" style="border-radius:10px;/>
+    </swiper-slide>
+    <swiper-slide>
+        <img src="https://i.pinimg.com/enabled/564x/9d/0e/d6/9d0ed63ec42ac1c6c94b78a7b0a32f51.jpg" style="border-radius:10px;/>
+    </swiper-slide>
+    <swiper-slide>
+        <img src="https://i.pinimg.com/enabled/564x/f3/48/44/f34844ac9cd979a84fdf0f1e630adfc0.jpg" style="border-radius:10px;"/>
+    </swiper-slide>
+    <swiper-slide>
+        <img src="https://i.pinimg.com/564x/34/9d/45/349d45d4bb3e76c72a4475b9163de5cc.jpg" style="border-radius:10px;"/>
+    </swiper-slide>
+    <swiper-slide>
+        <img src="https://i.pinimg.com/564x/48/d1/6b/48d16bdaf800453ae440de8415525265.jpg" style="border-radius:10px;"/>
+    </swiper-slide>
+    <swiper-slide>
+        <img src="https://i.pinimg.com/236x/76/1e/b8/761eb81535806ec7186fdf2abd6453ad.jpg" style="border-radius:10px;"/>
+    </swiper-slide>
+    <swiper-slide>
+        <img src="https://i.pinimg.com/564x/85/47/00/85470026d8df3356c3c3e78275398868.jpg" style="border-radius:10px;"/>
+    </swiper-slide>
+    <swiper-slide>
+        <img src="https://i.pinimg.com/564x/0e/80/36/0e8036774847be66a00381b96552f8c9.jpg" style="border-radius:10px;"/>
+    </swiper-slide>
+    <swiper-slide>
+        <img src="https://i.pinimg.com/564x/ab/37/92/ab37925f99578b4854950aac034448b8.jpg" style="border-radius:10px;"/>
+    </swiper-slide>
+  </swiper-container>
+  {% endblock %}
+  
+  
+  
+  {% block content %}
+  
+  {% endblock %}
+  
+  
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
+</body>
+</html>
